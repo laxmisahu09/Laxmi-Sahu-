@@ -1,340 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <style>
-        /* General body styling */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            background-color: #05f7fff8;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> My Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* Helper class to center content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{
+    background:linear-gradient(135deg,#020617,#0f172a);
+    color:#e5e7eb;
+}
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:15px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(2,6,23,0.85);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+.logo{
+    color:#38bdf8;
+    font-size:22px;
+    font-weight:600;
+}
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+nav a{
+    color:#e5e7eb;
+    text-decoration:none;
+    position:relative;
+}
+nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#38bdf8;
+    bottom:-5px;
+    left:0;
+    transition:0.3s;
+}
+nav a:hover::after{width:100%;}
 
-        /* --- Task 1 & 8: Profile Header & Home Icon --- */
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color:#05f7fff8;;
-            padding: 15px 30px;
-            border-bottom: 1px solid #ddd;
-        }
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 10%;
+    gap:40px;
+}
+.hero-text h1{
+    font-size:3rem;
+    animation:fadeUp 1.2s ease forwards;
+}
+.hero-text span{color:#38bdf8;}
+.hero-text p{
+    margin:15px 0;
+    opacity:0;
+    animation:fadeUp 1.2s ease forwards;
+    animation-delay:0.4s;
+}
+.btn{
+    display:inline-block;
+    padding:12px 30px;
+    background:#38bdf8;
+    color:#020617;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 10px 30px rgba(56,189,248,0.5);
+}
 
-        .profile-name {
-            font-size: 28px;
-            font-weight: bold;
-            color: #1a1a1a;
-        }
+.profile{
+    position:relative;
+}
+.profile img{
+    width:280px;
+    border-radius:50%;
+    border:5px solid #38bdf8;
+    animation:float 4s ease-in-out infinite;
+}
+section{
+    padding:90px 10%;
+}
+.section-title{
+    text-align:center;
+    font-size:2.2rem;
+    margin-bottom:50px;
+}
 
-        .home-icon img {
-            width: 24px;
-            height: 24px;
-        }
+.skills{
+    max-width:600px;
+    margin:auto;
+}
+.skill{
+    margin-bottom:20px;
+}
+.skill p{margin-bottom:6px;}
+.bar{
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+}
+.bar span{
+    display:block;
+    height:10px;
+    background:#38bdf8;
+    width:0;
+    animation:load 2s forwards;
+}
 
-        /* --- Task 2: Navigation Bar --- */
-        .navigation-bar {
-            background-color: #2c3e50;
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .navigation-bar ul {
-            list-style-type: none; margin: 0; padding: 0;
-        }
-        .navigation-bar li {
-            display: inline; margin: 0 20px;
-        }
-        .navigation-bar a {
-            color: white; text-decoration: none; font-size: 16px; padding: 5px 0; transition: all 0.2s ease-in-out;
-        }
-        .navigation-bar a:hover {
-            font-weight: bold; text-decoration: underline;
-        }
-        
-        /* Section styling */
-        .section {
-            background-color: white;
-            margin-top: 20px;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .section h2 {
-            margin-top: 0;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        /* --- Task 3: About Me Section --- */
-        .about-me {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        .about-me img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #ddd;
-        }
-        .about-me-text h3 {
-            margin: 0 0 10px 0;
-            font-size: 22px;
-        }
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+.card{
+    background:rgba(30,41,59,0.8);
+    backdrop-filter:blur(10px);
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s;
+}
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+.card-content{
+    padding:20px;
+}
+.card:hover{
+    transform:translateY(-15px) scale(1.03);
+    box-shadow:0 20px 40px rgba(56,189,248,0.4);
+}
 
-        /* --- Task 4: Skills Section --- */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .skill {
-            text-align: center;
-            width: 120px;
-            padding: 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .skill img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
+.contact{
+    text-align:center;
+}
+.socials a{
+    margin:0 12px;
+    color:#38bdf8;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+.socials a:hover{
+    color:#e5e7eb;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    background:#020617;
+}
 
-        /* --- Task 5: Projects Section --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .project-card {
-            border-left: 5px solid #3498db;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        .project-card h3 {
-            margin: 0 0 10px 0;
-        }
 
-        /* --- Task 6 & 7: Recommendations Section --- */
-        .recommendations-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .recommendation {
-            background-color: #fdfdfd;
-            border: 1px solid #eaeaea;
-            padding: 15px;
-            border-radius: 5px;
-            font-style: italic;
-        }
-        .recommendation p {
-            margin: 0 0 10px 0;
-        }
-        .recommendation span {
-            font-style: normal;
-            font-weight: bold;
-            display: block;
-            text-align: right;
-            color: #555;
-        }
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes load{
+    from{width:0;}
+}
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
 
-        /* --- Form for New Recommendation --- */
-        .recommendation-form {
-            margin-top: 20px;
-        }
-        .recommendation-form textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            min-height: 80px;
-            box-sizing: border-box;
-        }
-        .recommendation-form button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            border: none;
-            background-color: #2c3e50;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .recommendation-form button:hover {
-            background-color: #34495e;
-        }
-
-        /* --- Task 9: Pop-up Message --- */
-        .popup {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5); /* Overlay */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .popup-content {
-            background-color: white;
-            padding: 30px 40px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-size: 18px;
-        }
-    </style>
+@media(max-width:900px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
 </head>
+
 <body>
+<nav>
+    <div class="logo">Portfolio</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- Task 1 (Name) & Task 8 (Home Icon) -->
-    <header class="profile-header">
-        <div class="profile-name">Laxmi Sahu</div>
-        <div class="home-icon">
-            <a href="#"><img src="data:image/png;base64,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" alt="Home Icon"></a>
-        </div>
-    </header>
 
-    <!-- Task 2: Navigation Bar -->
-    <nav class="navigation-bar">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Project details</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#recommendations">Recommendations</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <!-- Task 3: About Me Section -->
-        <section id="about" class="section about-me">
-            <img src="https://media.licdn.com/dms/image/v2/D4D03AQHeF4y2Hn-gRQ/profile-displayphoto-scale_400_400/B4DZsVh3P2JMAg-/0/1765592759669?e=1767830400&v=beta&t=fL8kXHZ-1eO5U9HCQe6QjG7YADgoG9cTbljqZaBDW6Y" alt="Profile Picture">
-            <div class="about-me-text">
-                <h3>Laxmi Sahu</h3>
-                <p>A passionate web developer with experience in creating dynamic and user-friendly web applications. Skilled in front-end and back-end technologies, with a strong focus on writing clean and efficient code.</p>
-            </div>
-        </section>
-
-        <!-- Task 4: Skills Section -->
-        <section id="skills" class="section">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <!-- 2 Present Skills -->
-                <div class="skill"><img src="https://www.svgrepo.com/show/452228/html-5.svg" alt="HTML5 Logo"><p>HTML</p></div>
-                <div class="skill"><img src="https://www.svgrepo.com/show/452185/css-3.svg" alt="CSS3 Logo"><p>CSS</p></div>
-                <!-- 3 New Skills -->
-                <div class="skill"><img src="https://www.svgrepo.com/show/353925/javascript.svg" alt="JavaScript Logo"><p>JavaScript</p></div>
-                <div class="skill"><img src="https://www.svgrepo.com/show/354259/react.svg" alt="React Logo"><p>React</p></div>
-                <div class="skill"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAvVBMVEX///8zMzOAvQF7uwB4uQAwMDAcHBzT09MrKyshISF1uAAaGhonJydGRkb8/vbY2Nj+//tsbGyGwBSLi4u82I5xcXHx9+Tr9NrQ5a2LwiG3t7fp6emcnJwRERF4eHhBQUHZ6rz19fXi78taWlq+vr6BgYFjY2PLy8uYmJi113yurq5YWFi824jV6LXF4JmjzlmaykTn8tKt022dy0tOTk4BAQGSxjLM46SmpqbF4Jiw1XSizlb1+uyn0GK62Yk1M1bqAAAGaElEQVR4nO2aa1uqShiGgRkUEI/lWRMtK09lVppm/f+ftWdAhIEBdbVbXu793J9WxJp37mGO76QoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPw/uKm2z12FX6Zn24/nrsPvktdV2xifuxa/CTNUdTP/cO56/B7ckDlm7ovnrslv4RmqqvH+X51xfEM1lz13VX6JvWEGhpcKDC8fGF4+MLx8YHj5wPAvcmwFSrWTij3CsH9kUc7Ty0mhRVp6V20d82JDs17rx7yYnUz4sfegYbvazR/TuoOlRa3P05o3VJvbjM5O4pODp9TBkmoaIaPCoRfbVdMwzGr7kGH/0TBY5JtDh8faghLSpESbRkKXVmvnUGWU/k3G8E6pmWFqj9l+sRAcoq3Si+zYbomGcaOqaYZ3PdNtAcPspJb3rRHadJSVRmllJvxmtFo3GumV6Xd2fhw7lxypNN35cWhzkFzknW76BRpphtlJzv/CqqneJZY3Y2Jem5ZGhFjL0HCsD0ab+lOqIGtFNYyZT4g0a1ItDP1KGBNF3uXjxAzbw1DTpqRy6nPWQUdb/6dnSujC/0mpzabf9WmKX/E+Vhs9J4vEwmgRCJGV3B/mDFVG1PDDsCNvGKZkkBQ2lFjz8Nzm8OG49n+aruqL5Cm2PezKamPkopG2C4tEBfln1GIjoGNG6y039AegiG1+iMWVnog7AEVWbFRW/IeDxlZJ4kNPqo2thyOV1prMz3WcC+13lzcTShQNi/cyPzWWWa0Lnytgu2Hirwcn9KuuPIobqRtKxT9bCX68q1qhGaecSy4xbPiQ0JG9yKHGrRBrIf9CbNTQxSHDanIY1lPv9+8Vkv244vf+xWI3pcCw4VVS33EjT/bv1SziJFb/mzZLJxkattD+RjkwrKQaXgeGOfFriB800VAXI+u3YcPdFPO05hO3s5g3l/ONZ904zZBNoOPbcB/7saFuvuWFwZZkaKqPwqwjMyxY1kwpfVrUxXo93dDs8UUwPE/81NBWx5GpTG5ouHdvndDKITWk1FHYsvH61Gis58QdgScZGv7g7gSPfmSo21fuetMfBj1QamjzDSmbS9o3waNgBhANK+TLe/xFtO1phqErzEc/0I8MdXW/Z8imfkMemW3Enmt8J+v9V7MX7DcEw4JGRt7jF8t6Oc3QDI5NLfNfMXwLovQkZ4u9oTlW6oSwJaexi2wb4YVY/IZLwnqpU+erB1f7Q8PxXzd0+G6QLTnckJ1thFOUaDggbJlnO4DlwlEu01DPTSJbV9FQqY0qlE2n7HTxWrokQ75hsq6V1ns8xxAx5P+oDxqbCqHfF2SoOBWqPZWU/jh+rhAMneXcr1CTfJ7ZUFX3Ng+pq4X+VuR5iKTDgWA4c2dQl+X5DfWc93dC7XIgLV0P9W5ahkYw3Gqk6WxLpUJtROjq3IY8Q/PY7z/aoY1hwq5NXB9SDJUVO9xrlWaFzajzc8807tcx8z1hg520L9UT8ybRmWYw51OpZWnfZ18Pd1U/8mzB+vStPEOzPz35c2nhxXEGu/TQ9fGG+nvobOqfikOGSjPphM+xgrxi8V1NoRtYdHKR30kzNAxtl4LarxaB/CehXwcEfUNTWIdau12+UQ2e1ZeJh3xijUINeSNN+3jN2A0V2I+/KOZNfF52acQVpULysjDlScXk/EzY0LCjCVJveggbsgiVWKbNhT6LGcXsRJpIVPVMZLuSjWUcdXnCdM3mFZ7yqoSTMg2eGD6QBt4ZStPp7So7kIqGbqPF/SRZ4XFPkqFwD4sRonla3gzV2Fs8nc82o1RzgieDpSS5Lze0M2/yK5HsW8YuR57VPyNdlRBpqrl/Fe2BRvdKNsiEXLv33o20NrXVOrQn4DcL1vNxFzTDlMumlnoVe+beygR+m6RWbJfDPVDPlZPW9P19ibQjR4LPvaz+lC2Ky5QLhUiEU3+32udNaeoN20OQoUn/y9JgOHp5lERmrKcysVmFHrwU+hnbjXs5E73/ifNhu8MxlsOO0VL5cLTtQ+/VvixC2ACkhy/2fggbjpRIstBR+kN+f5h+WefRsTMZ6UCNwG9I6R/fkJ6Cc31clGL5yD8Lbo+P/Nva2ffRAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAv80/pVmIJrTBJLYAAAAASUVORK5CYII=" alt="Node.js Logo"><p>Node.js</p></div>
-            </div>
-        </section>
-
-        <!-- Task 5: Projects Section -->
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Portfolio Website</h3>
-                    <p>A personal portfolio website to showcase my skills and projects, built with modern HTML, CSS, and JavaScript.</p>
-                </div>
-                <div class="project-card">
-                    <h3>E-commerce App</h3>
-                    <p>A full-stack e-commerce application with features like product listing, shopping cart, and user authentication.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Task Management Tool</h3>
-                    <p>A web-based tool to help users manage their daily tasks with a clean and intuitive interface.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Task 6 & 7: Recommendations Section -->
-        <section id="recommendations" class="section">
-            <h2>Recommendations</h2>
-            <div id="recommendations-list" class="recommendations-list">
-                <div class="recommendation">
-                    <p>"Working with Jane has been an absolute pleasure. Her expertise in front-end development is outstanding."</p>
-                    <span>- Aliya, Project Manager</span>
-                </div>
-                <div class="recommendation">
-                    <p>"A highly skilled and dedicated developer. Always delivers quality work on time."</p>
-                    <span>- Manish Markam, Lead Engineer</span>
-                </div>
-                <div class="recommendation">
-                    <p>"Her ability to solve complex problems is remarkable. A great team player."</p>
-                    <span>- Jeshtha Soni, Colleague</span>
-                </div>
-            </div>
-            
-            <!-- Form for submitting new recommendations -->
-            <div class="recommendation-form">
-                <h3>Leave a Recommendation</h3>
-                <textarea id="recommendation-text" placeholder="Enter your recommendation here..."></textarea>
-                <button onclick="addRecommendation()">Submit</button>
-            </div>
-        </section>
+<section id="home" class="hero">
+    <div class="hero-text">
+        <h1>Hi, I'm <span>Laxmi Sahu </span></h1>
+        <p>Web Developer • Programmer • Learner</p>
+        <a href="#projects" class="btn">View Projects</a>
     </div>
+    <div class="profile">
+        
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQHeF4y2Hn-gRQ/profile-displayphoto-scale_400_400/B4DZsVh3P2JMAg-/0/1765592759669?e=1768435200&v=beta&t=82JO9z-hAx8hcBZj_Lp1ONwgemL8woLGY-hH_AHxyCY" alt="Profile">
+    </div>
+</section>
 
-    <!-- Task 9: Pop-up Message -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <p>Thank you for leaving a recommendation!</p>
+
+<section id="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills">
+        <div class="skill">
+            <p>HTML & CSS</p>
+            <div class="bar"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill">
+            <p>JavaScript</p>
+            <div class="bar"><span style="width:80%"></span></div>
+        </div>
+        <div class="skill">
+            <p>Ms excle </p>
+            <div class="bar"><span style="width:70%"></span></div>
         </div>
     </div>
+</section>
 
-    <script>
-        // JavaScript for Task 7 & 9
-        function addRecommendation() {
-            // Get the text from the textarea
-            const recommendationText = document.getElementById('recommendation-text').value;
 
-            // Check if the textarea is not empty
-            if (recommendationText.trim() !== "") {
-                // Create a new recommendation element
-                const newRecommendation = document.createElement('div');
-                newRecommendation.className = 'recommendation';
-                newRecommendation.innerHTML = `<p>"${recommendationText}"</p><span>- A new visitor</span>`;
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="">
+            <div class="card-content">
+                <h3>E-Commerce Website</h3>
+                <p>Shopping website using HTML & CSS.</p>
+            </div>
+        </div>
 
-                // Add it to the list of recommendations (for Task 7)
-                document.getElementById('recommendations-list').appendChild(newRecommendation);
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04" alt="">
+            <div class="card-content">
+                <h3>Calculator</h3>
+                <p>JavaScript based calculator app.</p>
+            </div>
+        </div>
 
-                // Clear the textarea
-                document.getElementById('recommendation-text').value = '';
-                
-                // Show the pop-up (for Task 9)
-                const popup = document.getElementById('popup');
-                popup.style.display = 'flex';
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64" alt="">
+            <div class="card-content">
+                <h3>Portfolio Website</h3>
+                <p>Animated professional portfolio.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <p>Email: laxmisahuranisahu@gmail.com</p><br>
+    <div class="socials">
+        <a href="https://github.com/laxmisahu09">GitHub</a>
+        <a href="https://www.linkedin.com/in/laxmi-sahu-5045b6327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a>
+        
+    </div>
+</section>
 
-                // Hide the pop-up after 3 seconds
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 3000);
-            }
-        }
-    </script>
+<footer>
+    <p>© 2025 Laxmi sahu | All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
